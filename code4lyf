@@ -1,0 +1,341 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<string.h>
+#include<ctype.h>
+#include<time.h>
+
+#include<windows.h>
+
+void LOGIN(void);
+void HOME(void);
+void BOOK_PARKING(void);
+void VIEW_CUSTOMER_RECORD(void);
+void EDIT_CUSTOMER_RECORDS(void);
+void LOGOUT(void);
+
+int main(){
+	int i=0;
+
+	time_t t;
+	time(&t);
+	
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	printf("\t\t\t*************************************************************************************  \n");
+	printf("\t\t\t*                                                                                   *  \n");
+	printf("\t\t\t*                                                                                   *  \n");
+	printf("\t\t\t*                                                                                   *  \n");	
+	printf("\t\t\t*              |                                     |                              *  \n");	
+	printf("\t\t\t*              |         WELCOME TO USJ GARAGE       |                              *  \n");	
+	printf("\t\t\t*              ---------------------------------------                              *  \n");	
+	printf("\t\t\t*                                                                                   * \n");	
+    printf("\t\t\t************************************************************************************* \n");
+	printf("\t\t\t\t\t*       -----------------------------           *\n");
+	printf("\t\t\t\t\t*   WELCOME TO GROUP A GARAGE BOOKING SYSTEM    *\n");
+	printf("\t\t\t\t\t*       -----------------------------           *\n");
+	printf("\t\t\t\t\t*         CODING AND DESIGN BY                  *\n");
+	printf("\t\t\t\t\t*       -----------------------------           *\n");
+	printf("\t\t\t\t\t*             CODE4LYF LABS                     *\n");
+	printf("\t\t\t\t\t*       -----------------------------           *\n");
+	printf("\t\t\t\t\t* CODE4LYF LABS MBARARA                         *\n");
+	printf("\t\t\t\t\t*                       COMPUTING SCIENCES      *\n");
+	printf("\t\t\t\t\t*************************************************\n\n\n");
+	printf("\n");
+	printf("\n");
+	printf("\n");
+		
+		for(i=0;i<80;i++){
+            printf("-");
+	    printf("\n\t\t\tCurrent date and time : %s",ctime(&t));
+	    for(i=0;i<80;i++)
+            printf("-");
+        }
+	printf("\nPRESS ENTER TO CONTINUE.....");
+	getch();
+	LOGIN();
+	return 0;
+}
+
+void LOGIN(void){
+	system("cls");
+	char const user_name[50];
+    
+    User:
+    printf("\n\t\t ~~~~~~~~~~ \tGROUP A GARAGE BOOKING SYSTEM\t ~~~~~~~~~~  ");
+    printf(;
+    printf("\n\t\t~~~~~~~~~~****************  Login Page  ****************~~~~~~~~~~  ");
+    printf("\n");
+	printf("\n");
+    printf("\nEnter your USER NAME:\n");
+
+    scanf("\t%s", &user_name);
+
+    if (strcmp(user_name,"GROUPA")==0)
+
+{
+
+printf("               USER NAME IS CORRECT\n");
+
+}
+
+else
+
+{
+
+printf("You have enetred an invalid USER NAME\nPlease enter your USER NAME again\n");
+
+goto User;
+
+}
+
+char pass[50];
+
+pass:
+
+printf("ENTER PASSWORD: \t\n");
+
+scanf("%s", &pass);
+
+	if(strcmp(pass,"groupa")==0)
+
+{
+
+  printf("You have logged in successfuly \n");
+  if(getch())
+  HOME();
+ }
+
+else
+
+{
+
+printf("You have entered a wrong password\nEnter your password again\n");
+
+goto pass;
+
+}
+
+}
+struct CustomerDetails   //STRUCTURE DECLARATION
+{
+	char platenumber[10];
+	char name[20];
+	char address[25];
+	char phonenumber[15];
+	char nationality[15];
+	char email[20];
+	char period[10];
+	char arrivaldate[10];
+}
+s;
+
+void HOME(){
+	system("cls");
+	
+	printf("\n\t\t        ~~~~~~~~~~ \tGROUP A GARAGE BOOKING SYSTEM\t ~~~~~~~~~~  ");
+    printf("\n");
+    printf("\n\t\t~~~~~~~~~~****************  ENTER YOUR CHOICE  ****************~~~~~~~~~~  ");
+    printf("\n");
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	printf("                    *************************************************************************************  \n");
+	printf("                    *                                                                                   *  \n");
+	printf("                    *   1. --->  BOOK_PARKING.                                                          *  \n");
+	printf("                    *                                                                                   *  \n");	
+	printf("                    *   2. --->   VEIW CUSTOMER RECORDS                                                 *  \n");	
+	printf("                    *                                                                                   *  \n");	
+	printf("                    *   3. --->   EDIT CUSTOMER RECORDS                                                 *  \n");	
+	printf("                    *                                                                                   * \n");	
+	printf("                    *   4. --->   LOGOUT                                                                *  \n");
+	printf("                    *                                                                                   *  \n");
+	printf("                    *                                                                                   *  \n");	
+	printf("                    *                                   THANK YOU FOR CHOOSING US                       *  \n");
+	printf("\n");
+	printf("                    *************************************************************************************  \n");
+    printf("\n");
+	printf("\n");
+    printf("\n");
+	printf("\n");
+	if(getch())
+	choice:
+   	printf(" ENTER YOUR CHOICE \n");
+
+	int select;
+	scanf("%d",&select);
+
+	
+	if (select==1){
+	system("cls");  
+	BOOK_PARKING();
+	if(getch())
+	HOME();
+		
+		
+	}
+		else if (select==2){
+	system("cls");
+	VIEW_CUSTOMER_RECORD();
+	if(getch())
+	HOME();		
+	
+		
+	}
+		else if (select==3){
+		system("cls");
+	 EDIT_CUSTOMER_RECORDS();
+		
+	if(getch())
+	HOME();		
+	
+		
+	}
+	
+		else if (select==4){
+		
+	LOGOUT();
+		system("cls");
+	if(getch())
+	HOME();		
+		
+	}
+	
+		else {
+	printf("\n wrong input please try again ");	
+	goto choice;
+		
+	
+}
+}
+void BOOK_PARKING(){
+	
+		FILE *f;
+	char test;
+	f=fopen("customer_details.txt","a+");
+	if(f==0)
+	{   f=fopen("customer_details.txt","w+");
+		system("cls");
+		printf("Please Wait as we are setting our database in your computer!!");
+		printf("\n Process completed press any key to continue!! ");
+		 getch();
+	}
+	while(1)
+	{
+		system("cls");
+		printf("\n Enter Driver's Details:");
+		printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		printf("\n Enter Number Plate:\n");
+		scanf("\n%s",s.platenumber);
+		fflush(stdin);
+		printf("Enter Full Name:\n");
+		scanf("%s",s.name);
+		printf("Enter Address:\n");
+		scanf("%s",s.address);
+		printf("Enter Phone Number:\n");
+		scanf("%s",s.phonenumber);
+		printf("Enter Nationality:\n");
+		scanf("%s",s.nationality);
+		printf("Enter Email:\n");
+		scanf(" %s",s.email);
+		printf("Enter Period (Maximum days in Garage)(\'x\'days):\n");
+		scanf("%s",&s.period);
+		printf("Enter Arrival date(dd\/mm\/yyyy):\n");
+		scanf("%s",&s.arrivaldate);
+		fwrite(&s,sizeof(s),1,f);
+		fflush(stdin);
+		printf("\n\nGarage is successfully booked!!");
+		printf("\n Press esc key to exit,  any other key to add another customer detail:");
+
+	
+			break;
+	}
+	fclose(f);
+	
+}
+void VIEW_CUSTOMER_RECORD(){
+FILE *f;
+	int i;
+	if((f=fopen("customer_details.txt","r"))==NULL)
+		exit(0);
+	system("cls");
+	printf("\tPLATE NUMBER ");
+	printf("\tNAME ");
+	printf("\tADDRESS ");
+	printf("\tPHONE NUMBER ");
+	printf("\tNATIONALITY ");
+	printf("\tEMAIL ");
+	printf("\tPERIOD ");
+	printf("\tARRIVAL DATE \n");
+
+	for(i=0;i<118;i++)
+		printf("~");
+	while(fread(&s,sizeof(s),1,f)==1)
+	{
+		printf("\n%s \t%s \t%s \t%s \t%s  \t%s  \t%s  \t%s",s.platenumber, s.name , s.address , s.phonenumber ,s.nationality ,s.email,s.period,  s.arrivaldate);
+	}
+	printf("\n");
+	for(i=0;i<118;i++)
+		printf("~");
+
+	fclose(f);
+	getch();
+}
+	
+void EDIT_CUSTOMER_RECORDS(){
+	
+FILE *f;
+	int k=1;
+	char platenumber[20];
+	long int size=sizeof(s);
+	if((f=fopen("customer_details.txt","r+"))==NULL)
+	printf("Enter Plate number of the Customer's Car to edit:\n\n");
+	scanf("%19",&s.platenumber);
+	
+	while(fread(&s,sizeof(s),1,f)==1)
+	{
+		if(strcmp(s.platenumber,platenumber)==0)
+		{
+			k=0;
+			printf("\nEnter Plate Number     :");
+			gets(s.platenumber);
+			printf("\nEnter Name    :");
+			fflush(stdin);
+			scanf("%s",&s.name);
+			printf("\nEnter Address        :");
+			scanf("%s",&s.address);
+			printf("\nEnter Phone number :");
+			scanf("%f",&s.phonenumber);
+			printf("\nEnter Nationality :");
+			scanf("%s",&s.nationality);
+			printf("\nEnter Email :");
+			scanf("%s",&s.email);
+			printf("\nEnter Period :");
+			scanf("%s",&s.period);
+			printf("\nEnter Arrival date :");
+			scanf("%s",&s.arrivaldate);
+			fseek(f,size,SEEK_CUR);  //to go to desired position infile
+			fwrite(&s,sizeof(s),1,f);
+			break;
+		}
+	}
+	if(k==1){
+		printf("\n\nTHE RECORD DOESN'T EXIST!!!!");
+		fclose(f);
+		getch();
+	}else{
+	    fclose(f);
+	    printf("\n\n\t\tYOUR RECORD IS SUCCESSFULLY EDITED!!!");
+	    getch();
+    }
+	getch();
+	 HOME();
+}
+
+
+void LOGOUT(void){
+		if(getch())
+		main();
+	
+}
